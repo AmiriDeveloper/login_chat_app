@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../w.dart';
 import 'home_screen.dart';
@@ -20,35 +21,36 @@ class _TalkScreenState extends State<TalkScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.purple, Colors.blue],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight)),
+        ),
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const HomePage()));
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.blue[700],
+          IconButton(
+            onPressed: () {
+              Get.to(HomePage());
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(
+            height: 50,
+            width: 50,
+            child: CircleAvatar(
+              backgroundImage: AssetImage(
+                "images/mas.jpg",
               ),
             ),
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      "images/mas.jpg",
-                    ),
-                    fit: BoxFit.cover),
-                color: Colors.white,
-                shape: BoxShape.circle),
-          ),
+          const SizedBox(width: 10),
           SizedBox(
             height: 50,
             width: 80,
@@ -62,7 +64,7 @@ class _TalkScreenState extends State<TalkScreen> {
                     "Simon",
                     style: TextStyle(
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

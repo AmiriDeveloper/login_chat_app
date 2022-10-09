@@ -1,43 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // This is the type used by the popup menu below.
 enum Menu { itemOne, itemTwo, itemThree, itemFour }
 
-class YourApp extends StatelessWidget {
-  const YourApp({Key? key}) : super(key: key);
+class MyStatefulWidget extends StatelessWidget {
+  MyStatefulWidget({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: _title,
-      home: MyStatefulWidget(),
-    );
-  }
-}
-
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  String _selectedMenu = '';
+  RxString _selectedMenu = ''.obs;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          PopupMenuButton<Menu>(
+          PopupMenuButton(
+              color: Colors.blue,
               onSelected: (Menu item) {
-                setState(() {
-                  _selectedMenu = item.name;
-                });
+                _selectedMenu.value = item.name;
               },
               itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
                     const PopupMenuItem<Menu>(
